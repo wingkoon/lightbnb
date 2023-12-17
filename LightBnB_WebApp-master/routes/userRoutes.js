@@ -22,28 +22,29 @@ router.post("/", (req, res) => {
 });
 
 // Log a user in
-router.post("/login", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  database.getUserWithEmail(email).then((user) => {
-    if (!user) {
-      return res.send({ error: "no user with that id" });
-    }
-
-    if (!bcrypt.compareSync(password, user.password)) {
-      return res.send({ error: "error" });
-    }
-
-    req.session.userId = user.id;
-    res.send({
-      user: {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-      },
+const login =  function(email, password) {
+  return database.getUserWithEmail(email)
+    .then(user => {
+      if (bcrypt.compareSync(password, user.password)) {
+        return user;
+      }
+      return null;
     });
-  });
+};
+exports.login = login;
+      
+router.post('/login', (req, res) => {
+  const {email, password} = req.body;
+  login(email, password)
+    .then(user => {
+      if (!user) {
+        res.send({error: "error"});
+        return;
+      }
+      req.session.userId = user.id;
+      res.send({user: {name: user.name, email: user.email, id: user.id}});
+    })
+    .catch(e => res.send(e));
 });
 
 // Log a user out
@@ -56,25 +57,21 @@ router.post("/logout", (req, res) => {
 router.get("/me", (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
-    return res.send({ message: "not logged in" });
+    res.send({message: "not logged in"});
+    return;
   }
 
-  database
-    .getUserWithId(userId)
-    .then((user) => {
+  database.getUserWithId(userId)
+    .then(user => {
       if (!user) {
-        return res.send({ error: "no user with that id" });
+        res.send({error: "no user with that id"});
+        return;
       }
-
-      res.send({
-        user: {
-          name: user.name,
-          email: user.email,
-          id: userId,
-        },
-      });
+  
+      res.send({user: {name: user.name, email: user.email, id: userId}});
     })
-    .catch((e) => res.send(e));
+    .catch(e => res.send(e));
+
 });
 
 module.exports = router;
