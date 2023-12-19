@@ -1,9 +1,13 @@
+-- drop tables for easy re runs
+
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS properties CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS property_reviews CASCADE;
 DROP TABLE IF EXISTS rates CASCADE;
 DROP TABLE IF EXISTS guest_reviews CASCADE;
+
+-- tables for users, properties, property_reviews and reservations  names/passwords
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
