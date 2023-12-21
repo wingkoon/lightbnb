@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(
   cookieSession({
     name: "session",
+    id: 0,
     keys: ["key1"],
   })
 );

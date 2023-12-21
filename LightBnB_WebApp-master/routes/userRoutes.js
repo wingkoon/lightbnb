@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const database = require("../db/database");
+const cookieSession = require("cookie-session");
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.post("/", (req, res) => {
       }
 
       req.session.userId = user.id;
+      cookieSession.id = user.id;
       res.send("🤗");
     })
     .catch((e) => res.send(e));
@@ -42,6 +44,7 @@ router.post('/login', (req, res) => {
         return;
       }
       req.session.userId = user.id;
+      cookieSession.id = user.id;
       res.send({user: {name: user.name, email: user.email, id: user.id}});
     })
     .catch(e => res.send(e));
@@ -50,6 +53,8 @@ router.post('/login', (req, res) => {
 // Log a user out
 router.post("/logout", (req, res) => {
   req.session.userId = null;
+  cookieSession.id = null;
+  cookieSession.name = null;
   res.send({});
 });
 

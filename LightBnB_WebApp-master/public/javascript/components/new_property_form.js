@@ -6,12 +6,12 @@ $(() => {
   <form action="/api/properties" method="post" id="new-property-form" class="new-property-form">
       <div class="new-property-form__field-wrapper">
         <label for="new-property-form__title">Title</label>
-        <input type="text" name="title" placeholder="Title" id="new-property-form__title">
+        <input type="text" name="title" placeholder="Title" id="new-property-form__title" required>
       </div>
       
       <div class="new-property-form__field-wrapper">
         <label for="new-property-form__description">Description</label>
-        <textarea placeholder="Description" name="description" id="property-form__description" cols="30" rows="10"></textarea>
+        <textarea placeholder="Description" name="description" id="property-form__description" cols="30" rows="10" required></textarea>
       </div>
 
       <!-- <div class="new-property-form__field-wrapper">
@@ -24,23 +24,23 @@ $(() => {
 
       <div class="new-property-form__field-wrapper">
         <label for="new-property-form__bedrooms"># 🛌</label>
-        <input placeholder="# 🛌" type="number" name="number_of_bedrooms" id="new-property-form__bedrooms">
+        <input placeholder="# 🛌" type="number" name="number_of_bedrooms" id="new-property-form__bedrooms" required>
 
         <label for="new-property-form__bathrooms"># 🚽</label>
-        <input placeholder="# 🚽" type="number" name="number_of_bathrooms" id="new-property-form__rooms">
+        <input placeholder="# 🚽" type="number" name="number_of_bathrooms" id="new-property-form__rooms" required>
 
         <label for="new-property-form__parking"># 🚘</label>
-        <input placeholder="# 🚘" type="number" name="parking_spaces" id="new-property-form__parking">
+        <input placeholder="# 🚘" type="number" name="parking_spaces" id="new-property-form__parking" required>
       </div>
 
       <div class="new-property-form__field-wrapper">
         <label for="new-property-form__cost">Cost Per Night</label>
-        <input placeholder="Cost Per Night" type="number" name="cost_per_night" id="new-property-form__cost">
+        <input placeholder="Cost Per Night" type="number" name="cost_per_night" id="new-property-form__cost" required>
       </div>
 
       <div class="new-property-form__field-wrapper">
         <label for="new-property-form__thumbnail">Thumbnail Image</label>
-        <input placeholder="Thumbnail Image" type="text" name="thumbnail_photo_url" id="new-property-form__thumbnail">
+        <input placeholder="Thumbnail Image" type="text" name="thumbnail_photo_url" id="new-property-form__thumbnail" >
       </div>
 
       <div class="new-property-form__field-wrapper">
@@ -52,12 +52,12 @@ $(() => {
 
       <div class="new-property-form__field-wrapper">
           <label for="new-property-form__street">Street</label>
-          <input placeholder="Street" type="text" name="street" id="new-property-form__street" />
+          <input placeholder="Street" type="text" name="street" id="new-property-form__street" required/>
         </div>
 
         <div class="new-property-form__field-wrapper">
           <label for="new-property-form__country">Country</label>
-          <select id="new-property-form__country" name="country" data-country-selected="CA">
+          <select id="new-property-form__country" name="country" data-country-selected="CA" required>
               <option value="US">United States</option>
               <option value="CA">Canada</option>
               <option value="BR">Brazil</option>
@@ -67,15 +67,15 @@ $(() => {
           
           <div class="new-property-form__field-wrapper">
             <label for="new-property-form__city">City</label>
-            <input placeholder="City" type="text" name="city" id="new-property-form__city" />
+            <input placeholder="City" type="text" name="city" id="new-property-form__city" required/>
           </div>
           <div class="new-property-form__field-wrapper">
             <label for="new-property-form__state">Administrative Area</label>
-            <input placeholder="Administrative Area" type="text" name="province" id="new-property-form__state" />
+            <input placeholder="Administrative Area" type="text" name="province" id="new-property-form__state" required/>
           </div>
           <div class="new-property-form__field-wrapper">
             <label for="new-property-form__zip">Postal Code</label>
-            <input placeholder="Postal Code" type="text" name="post_code" id="new-property-form__zip" />
+            <input placeholder="Postal Code" type="text" name="post_code" id="new-property-form__zip" required/>
           </div>
         </div>
 
